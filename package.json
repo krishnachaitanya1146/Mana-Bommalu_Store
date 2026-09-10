@@ -1,0 +1,20 @@
+{
+  "name": "mana-bommalu-store",
+  "version": "1.0.0",
+  "description": "MANA BOMMALU — wooden toys storefront with connected admin panel, WhatsApp ordering, and SQLite backend.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "engines": {
+  "node": ">=20"
+},
+"dependencies": {
+  "better-sqlite3": "^13.0.3",
+  "bcryptjs": "^2.4.3",
+  "jsonwebtoken": "^9.0.2",
+  "express": "^4.21.0"
+},
+  "license": "ISC"
+}

@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MANA BOMMALU — Admin Panel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F3EEDF;--bg-soft:#EAE1C8;--card:#FBF9F2;--olive-100:#DEE1C4;--olive-300:#A9AE79;--olive-600:#656B41;--olive-800:#3E4527;--ink:#2A2818;--muted:#6E6A54;--accent:#B5892C;--accent-deep:#8F6A1E;--line:#D6C9A3;--white:#FFFDF8;--danger:#9C4A3B;--wa:#4C7A3F}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:'Work Sans',sans-serif}button,input,select,textarea{font:inherit}button{cursor:pointer}
+h1,h2,h3{font-family:'Fraunces',serif;font-weight:500;color:var(--olive-800);margin:0}.shell{display:flex;min-height:100vh}
+.side{width:235px;background:var(--olive-800);color:#fff;position:fixed;inset:0 auto 0 0;padding:22px 0;display:flex;flex-direction:column}
+.logo{padding:0 20px 22px;font-family:'Fraunces',serif;font-size:20px}.logo small{display:block;font:400 11px 'Work Sans';color:var(--olive-300);margin-top:4px}
+.nav{display:flex;flex-direction:column;gap:2px}.nav button{border:0;background:transparent;color:var(--olive-100);text-align:left;padding:12px 20px}.nav button:hover,.nav button.active{background:var(--olive-600);color:#fff}
+.sidebottom{margin-top:auto;padding:15px}.sidebottom button{width:100%;margin-top:8px;border:0;border-radius:7px;padding:10px;background:rgba(255,255,255,.08);color:#fff}
+.main{margin-left:235px;min-width:0;flex:1}.top{position:sticky;top:0;z-index:20;background:var(--card);border-bottom:1px solid var(--line);padding:17px 28px;display:flex;justify-content:space-between;align-items:center}.top span{font-size:12px;color:var(--muted)}
+.content{padding:28px;max-width:1400px}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:24px}.stat,.panel{background:var(--card);border:1px solid var(--line);border-radius:12px}.stat{padding:19px}.stat strong{display:block;font:500 28px 'Fraunces';color:var(--olive-800)}.stat small{color:var(--muted)}
+.panel{padding:22px;margin-bottom:20px}.panelhead{display:flex;justify-content:space-between;align-items:center;gap:15px;margin-bottom:17px}.btn{border:1px solid transparent;border-radius:7px;padding:10px 15px;font-weight:700}.primary{background:var(--olive-600);color:#fff}.ghost{background:transparent;border-color:var(--olive-600);color:var(--olive-800)}.wa{background:var(--wa);color:#fff}.danger{background:transparent;border-color:var(--danger);color:var(--danger)}
+table{width:100%;border-collapse:collapse}th,td{padding:12px 10px;border-bottom:1px solid var(--line);text-align:left;font-size:13px}th{font-size:11px;text-transform:uppercase;letter-spacing:.4px;color:var(--muted)}.pill{display:inline-block;border-radius:12px;padding:5px 9px;background:var(--olive-100);color:var(--olive-800);font-size:11px;font-weight:700}.pill.warn{background:#EFE6C9;color:var(--accent-deep)}.pill.off{background:#F2DCD6;color:var(--danger)}
+.searchbar{display:flex;gap:10px;margin-bottom:15px}.searchbar input,.form input,.form textarea,.form select{width:100%;padding:10px 12px;border:1px solid var(--line);background:var(--bg);border-radius:7px;color:var(--ink)}
+.productgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.p{background:var(--card);border:1px solid var(--line);border-radius:11px;padding:17px}.p .thumb{height:120px;background:var(--bg-soft);border-radius:9px;display:grid;place-items:center;font-size:48px;margin-bottom:12px;overflow:hidden}.p .thumb img{width:100%;height:100%;object-fit:cover}.p h3{font-size:17px}.p small{color:var(--muted)}.p .line{display:flex;justify-content:space-between;margin-top:10px}.actions{display:flex;gap:7px;margin-top:14px}.actions .btn{flex:1}
+.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.form label{display:block;font-size:12px;font-weight:700;color:var(--muted);margin-bottom:5px}.form textarea{min-height:100px;resize:vertical}.full{grid-column:1/-1}.modal{position:fixed;inset:0;background:rgba(42,40,24,.45);display:none;place-items:center;z-index:100;padding:20px}.modal.open{display:grid}.modalbox{background:var(--card);border:1px solid var(--line);border-radius:13px;max-width:700px;width:100%;padding:25px;max-height:90vh;overflow:auto}.modalhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}.x{border:0;background:var(--bg-soft);border-radius:50%;width:34px;height:34px}.notice{background:var(--olive-100);padding:12px;border-radius:8px;color:var(--olive-800);font-size:13px;line-height:1.5}
+.order{border:1px solid var(--line);border-radius:10px;padding:16px;margin-bottom:12px;background:var(--card)}.orderhead{display:flex;justify-content:space-between;gap:10px}.orderitems{color:var(--muted);font-size:13px;line-height:1.7;margin:10px 0}.status select{padding:7px;border:1px solid var(--line);border-radius:6px;background:var(--bg)}
+.varrow{display:grid;grid-template-columns:1fr 1fr .8fr .8fr auto;gap:8px;margin-bottom:8px;align-items:center}.varrow input{padding:8px 10px}.varrow button{border:0;background:#F2DCD6;color:var(--danger);border-radius:6px;width:34px;height:34px}
+.err{color:var(--danger);font-size:13px;margin-top:8px}
+.loginwrap{min-height:100vh;display:grid;place-items:center;background:var(--bg)}
+.loginbox{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:36px;width:100%;max-width:380px}
+.loginbox h1{font-size:24px;margin-bottom:6px}.loginbox p{color:var(--muted);font-size:13px;margin:0 0 22px}
+.loginbox label{display:block;font-size:12px;font-weight:700;color:var(--muted);margin:14px 0 6px}
+.loginbox input{width:100%;padding:11px 13px;border:1px solid var(--line);border-radius:8px;background:var(--bg)}
+.loginbox button{width:100%;margin-top:20px;border:0;border-radius:8px;padding:12px;background:var(--olive-600);color:#fff;font-weight:700}
+@media(max-width:850px){.side{width:70px}.logo{font-size:0;text-align:center}.logo:before{content:'🧸';font-size:22px}.logo small{display:none}.nav button{font-size:0;text-align:center;padding:13px}.nav button:before{font-size:18px}.nav button:nth-child(1):before{content:'📊'}.nav button:nth-child(2):before{content:'🧸'}.nav button:nth-child(3):before{content:'📂'}.nav button:nth-child(4):before{content:'📦'}.nav button:nth-child(5):before{content:'👥'}.nav button:nth-child(6):before{content:'📈'}.nav button:nth-child(7):before{content:'🏪'}.main{margin-left:70px}.stats{grid-template-columns:1fr 1fr}.productgrid{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.content{padding:15px}.stats,.productgrid,.formgrid{grid-template-columns:1fr}.top{padding:14px}.side{width:58px}.main{margin-left:58px}.varrow{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+
+<div id="loginScreen" class="loginwrap">
+ <div class="loginbox">
+  <h1>Admin Login</h1>
+  <p>MANA BOMMALU store management</p>
+  <label>Username</label><input id="lg_user" placeholder="admin">
+  <label>Password</label><input id="lg_pass" type="password" placeholder="••••••••" onkeydown="if(event.key==='Enter')doLogin()">
+  <button onclick="doLogin()">Log In</button>
+  <div id="lg_err" class="err"></div>
+  <p style="margin-top:18px;font-size:12px;color:var(--muted)">First time here? Default login is <strong>admin</strong> / <strong>admin123</strong> — change it from Store Settings after logging in.</p>
+ </div>
+</div>
+
+<div id="adminShell" class="shell" style="display:none">
+<aside class="side"><div class="logo"> MANA BOMMALU<small>Admin Panel</small></div>
+<nav class="nav">
+<button onclick="go('dashboard')" class="active">Dashboard</button>
+<button onclick="go('products')">Products</button>
+<button onclick="go('categories')">Categories</button>
+<button onclick="go('orders')">WhatsApp Orders</button>
+<button onclick="go('customers')">Customers</button>
+<button onclick="go('reports')">Sales & Reports</button>
+<button onclick="go('store')">Store Settings</button>
+</nav>
+<div class="sidebottom"><button onclick="window.open('/','_blank')">👁 View Store</button><button onclick="logout()">↪ Logout</button></div>
+</aside>
+<main class="main"><header class="top"><h1 id="title">Dashboard</h1><span>Store Admin · WhatsApp-first ordering</span></header><div class="content" id="content"></div></main>
+</div>
+<div class="modal" id="modal"><div class="modalbox"><div class="modalhead"><h2 id="modalTitle">Edit</h2><button class="x" onclick="closeModal()">×</button></div><div id="modalBody"></div></div></div>
+
+<script>
+const API='/api';
+let TOKEN=localStorage.getItem('mb_admin_token')||'';
+let products=[],cats=[],orders=[],customers=[],settings={},varRows=[];
+
+function money(n){return '₹'+Number(n||0).toLocaleString('en-IN')}
+function formatDateTime(value){
+  if(!value) return '—';
+
+  const d = new Date(value.replace(' ', 'T') + 'Z');
+
+  if(isNaN(d.getTime())) return '—';
+
+  return d.toLocaleString('en-IN', {
+    timeZone: 'Asia/Kolkata',
+    day: '2-digit',
+    month: '2-digit',
+    year: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+    hour12: true
+  });
+}
+
+function formatDate(value){
+  if(!value) return '—';
+
+  const d = new Date(value.replace(' ', 'T') + 'Z');
+
+  if(isNaN(d.getTime())) return '—';
+
+  return d.toLocaleDateString('en-IN', {
+    timeZone: 'Asia/Kolkata',
+    day: '2-digit',
+    month: '2-digit',
+    year: 'numeric'
+  });
+}
+function pic(url){return url?`<img src="${url}" alt="" onerror="this.parentElement.innerHTML='🧸'">`:'🧸'}
+
+async function api(path,opts={}){
+ opts.headers=Object.assign({'Content-Type':'application/json'},opts.headers||{},TOKEN?{'Authorization':'Bearer '+TOKEN}:{});
+ const res=await fetch(API+path,opts);
+ if(res.status===401){logout();throw new Error('Session expired');}
+ if(!res.ok){const e=await res.json().catch(()=>({error:'Something went wrong.'}));throw new Error(e.error||'Something went wrong.')}
+ return res.status===204?null:res.json();
+}
+
+async function doLogin(){
+ const username=document.getElementById('lg_user').value.trim();
+ const password=document.getElementById('lg_pass').value;
+ document.getElementById('lg_err').textContent='';
+ try{
+  const r=await fetch(API+'/auth/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({username,password})});
+  const data=await r.json();
+  if(!r.ok)throw new Error(data.error||'Login failed');
+  TOKEN=data.token;localStorage.setItem('mb_admin_token',TOKEN);
+  enterAdmin();
+ }catch(e){document.getElementById('lg_err').textContent=e.message}
+}
+function logout(){TOKEN='';localStorage.removeItem('mb_admin_token');document.getElementById('adminShell').style.display='none';document.getElementById('loginScreen').style.display='grid'}
+
+async function enterAdmin(){
+ try{await api('/auth/me')}catch(e){logout();return}
+ document.getElementById('loginScreen').style.display='none';
+ document.getElementById('adminShell').style.display='flex';
+ go('dashboard');
+}
+
+async function refresh(){
+ [products,cats,orders,customers,settings]=await Promise.all([
+  api('/products'),api('/categories'),api('/orders'),api('/customers'),api('/settings')
+ ]);
+}
+
+function go(p){
+ document.getElementById('title').textContent=({dashboard:'Dashboard',products:'Products',categories:'Categories',orders:'WhatsApp Orders',customers:'Customers',reports:'Sales & Reports',store:'Store Settings'})[p];
+ document.querySelectorAll('.nav button').forEach((b,i)=>b.classList.toggle('active',['dashboard','products','categories','orders','customers','reports','store'][i]===p));
+ ({dashboard,products:productsPage,categories:categoriesPage,orders:ordersPage,customers:customersPage,reports:reportsPage,store:storePage}[p])();
+}
+
+async function dashboard(){
+ await refresh();
+ const pending=orders.filter(o=>!['Delivered','Cancelled'].includes(o.status)).length;
+ const total=orders.filter(o=>o.status!=='Cancelled').reduce((s,o)=>s+o.total,0);
+ document.getElementById('content').innerHTML=`<div class="stats"><div class="stat"><strong>${money(total)}</strong><small>Confirmed / recorded sales</small></div><div class="stat"><strong>${orders.length}</strong><small>WhatsApp orders</small></div><div class="stat"><strong>${pending}</strong><small>Orders needing attention</small></div><div class="stat"><strong>${products.length}</strong><small>Toys listed</small></div></div><div class="panel"><div class="panelhead"><h2>Recent WhatsApp orders</h2><button class="btn ghost" onclick="go('orders')">View all</button></div>${orders.slice(0,5).map(orderCard).join('')||'<p style="color:var(--muted)">No orders yet.</p>'}</div><div class="panel"><div class="panelhead"><h2>Business flow</h2></div><div class="notice">Customer browses the live store → selects size/colour & quantity → order is logged here automatically → customer's WhatsApp opens with the message ready → you confirm availability, delivery and payment.</div></div>`;
+}
+
+function orderCard(o){return `<div class="order"><div class="orderhead"><div><strong>${o.id}</strong> · ${o.customer_name||'—'}<div style="font-size:12px;color:var(--muted)">${o.phone||'no phone on file'} · ${formatDateTime(o.created_at)}</div></div><span class="pill ${o.status==='New'?'warn':''}">${o.status}</span></div><div class="orderitems">${o.items}<br><strong>${money(o.total)}</strong></div><div class="actions"><button class="btn ghost" onclick="orderModal('${o.id}')">Update</button><button class="btn wa" onclick="openWA('${o.phone}','${o.customer_name||''}')">WhatsApp</button></div></div>`}
+
+// ---------------- PRODUCTS ----------------
+async function productsPage(){
+ await refresh();
+ document.getElementById('content').innerHTML=`<div class="panel"><div class="panelhead"><div><h2>Products</h2><small style="color:var(--muted)">Manage what customers see in the toy catalogue — size, colour, price and stock live here.</small></div><button class="btn primary" onclick="productModal()">+ Add Toy</button></div><div class="searchbar"><input id="ps" oninput="filterProducts()" placeholder="Search toys..."></div><div class="productgrid" id="pg">${products.map(productCard).join('')||'<p style="color:var(--muted)">No toys yet — add your first one.</p>'}</div></div>`;
+}
+function filterProducts(){const q=document.getElementById('ps').value.toLowerCase();document.getElementById('pg').innerHTML=products.filter(p=>p.name.toLowerCase().includes(q)||p.category.toLowerCase().includes(q)).map(productCard).join('')}
+function productCard(p){
+ const stock=p.stockQty||0;
+ const optCount=(p.variants||[]).length;
+ return `<div class="p"><div class="thumb">${pic(p.image_url)}</div><h3>${p.name}</h3><small>${p.category}${p.age?' · '+p.age:''}</small><small style="display:block;margin-top:4px">${optCount} option${optCount===1?'':'s'} (size/colour)</small><div class="line"><strong>${money(p.price)}</strong><span class="pill ${stock<=5?'warn':''}">${stock<=0?'Out of stock':stock<=5?stock+' left':'Stock '+stock}</span></div><div class="actions"><button class="btn ghost" onclick="productModal(${p.id})">Edit</button><button class="btn danger" onclick="deleteProduct(${p.id})">Delete</button></div></div>`;
+}
+function variantRowHtml(v,i){
+ v=v||{size:'',colour:'',price:'',stock_qty:0};
+ return `<div class="varrow" data-i="${i}"><input placeholder="Size (e.g. Small)" value="${v.size||''}" data-f="size"><input placeholder="Colour (e.g. Red)" value="${v.colour||''}" data-f="colour"><input placeholder="Price override" type="number" value="${v.price||''}" data-f="price"><input placeholder="Stock qty" type="number" value="${v.stock_qty||0}" data-f="stock_qty"><button onclick="removeVarRow(${i})" title="Remove option">×</button></div>`;
+}
+function renderVarRows(){document.getElementById('varRows').innerHTML=varRows.map(variantRowHtml).join('')}
+function addVarRow(){varRows.push({size:'',colour:'',price:'',stock_qty:0});renderVarRows()}
+function removeVarRow(i){if(varRows.length<=1)return alert('A toy needs at least one size/colour option.');varRows.splice(i,1);renderVarRows()}
+function collectVarRows(){
+ document.querySelectorAll('#varRows .varrow').forEach((row,i)=>{
+  const get=f=>row.querySelector(`[data-f="${f}"]`).value;
+  varRows[i]={size:get('size'),colour:get('colour'),price:get('price'),stock_qty:get('stock_qty')};
+ });
+ return varRows;
+}
+function productModal(id){
+ const p=id?products.find(x=>x.id==id):null;
+ varRows=p&&p.variants&&p.variants.length?p.variants.map(v=>({...v})):[{size:'',colour:'',price:'',stock_qty:0}];
+ document.getElementById('modalTitle').textContent=id?'Edit Toy':'Add Toy';
+ document.getElementById('modalBody').innerHTML=`<div class="form">
+ <div class="formgrid">
+  <div><label>Toy name</label><input id="f_name" value="${p?p.name:''}"></div>
+  <div><label>Category</label><select id="f_cat">${cats.map(c=>`<option ${p&&c.name===p.category?'selected':''}>${c.name}</option>`).join('')}</select></div>
+  <div><label>Base price (₹)</label><input id="f_price" type="number" value="${p?p.price:''}"></div>
+  <div><label>Original / MRP price (optional)</label><input id="f_was" type="number" value="${p&&p.was_price?p.was_price:''}"></div>
+  <div><label>Age group</label><input id="f_age" placeholder="e.g. 3+ yrs" value="${p?p.age||'':''}"></div>
+  <div><label>Badge (optional)</label><input id="f_badge" placeholder="e.g. Bestseller" value="${p?p.badge||'':''}"></div>
+<div class="full">
+  <label>Product Image</label>
+
+  <input
+    id="f_image_file"
+    type="file"
+    accept="image/*"
+    onchange="handleImageSelect(event)"
+  >
+
+  <input
+    id="f_image"
+    type="hidden"
+    value="${p?p.image_url||'':''}"
+  >
+
+  <div id="imagePreview" style="margin-top:10px;">
+    ${p && p.image_url
+      ? `<img src="${p.image_url}" style="max-width:180px;max-height:180px;border-radius:10px;object-fit:cover;">`
+      : ''}
+  </div>
+
+  <small style="display:block;margin-top:6px;color:var(--muted)">
+    Choose an image from your computer.
+  </small>
+</div>  <div class="full"><label>Description</label><textarea id="f_desc">${p?p.description||'':''}</textarea></div>
+ </div>
+ <div class="full" style="margin-top:18px">
+  <label>Sizes / Colours / Price / Stock <span style="font-weight:400;color:var(--muted)">— customers pick one of these on the toy page. Leave "Price override" blank to use the base price.</span></label>
+  <div id="varRows"></div>
+  <button class="btn ghost" onclick="addVarRow()" type="button">+ Add another size / colour option</button>
+ </div>
+ <div id="p_err" class="err"></div>
+ <div class="actions" style="justify-content:flex-end;margin-top:18px"><button class="btn ghost" onclick="closeModal()">Cancel</button><button class="btn primary" onclick="saveProduct(${id||0})">Save Toy</button></div>
+ </div>`;
+ renderVarRows();
+ openModal();
+}
+function handleImageSelect(event) {
+  const file = event.target.files[0];
+
+  if (!file) return;
+
+  // Check file type
+  if (!file.type.startsWith('image/')) {
+    alert('Please select an image file.');
+    event.target.value = '';
+    return;
+  }
+
+  // Check file size - 2 MB maximum
+  if (file.size > 2 * 1024 * 1024) {
+    alert('Please choose an image smaller than 2 MB.');
+    event.target.value = '';
+    return;
+  }
+
+  const reader = new FileReader();
+
+  reader.onload = function(e) {
+    const imageData = e.target.result;
+
+    // Store image as Base64 data
+    document.getElementById('f_image').value = imageData;
+
+    // Show preview
+    document.getElementById('imagePreview').innerHTML = `
+      <img
+        src="${imageData}"
+        style="
+          max-width:180px;
+          max-height:180px;
+          border-radius:10px;
+          object-fit:cover;
+          border:1px solid #ddd;
+        "
+      >
+    `;
+  };
+
+  reader.readAsDataURL(file);
+}
+async function saveProduct(id){
+ const body={
+  name:document.getElementById('f_name').value.trim(),
+  category:document.getElementById('f_cat').value,
+  price:document.getElementById('f_price').value,
+  was_price:document.getElementById('f_was').value||null,
+  age:document.getElementById('f_age').value,
+  badge:document.getElementById('f_badge').value,
+  image_url:document.getElementById('f_image').value,
+  description:document.getElementById('f_desc').value,
+  variants:collectVarRows()
+ };
+ if(!body.name)return document.getElementById('p_err').textContent='Toy name is required.';
+ try{
+  if(id)await api('/products/'+id,{method:'PUT',body:JSON.stringify(body)});
+  else await api('/products',{method:'POST',body:JSON.stringify(body)});
+  closeModal();productsPage();
+ }catch(e){document.getElementById('p_err').textContent=e.message}
+}
+async function deleteProduct(id){
+ if(!confirm('Delete this toy from the catalogue?'))return;
+ try{await api('/products/'+id,{method:'DELETE'});productsPage()}catch(e){alert(e.message)}
+}
+
+// ---------------- CATEGORIES ----------------
+async function categoriesPage(){
+ await refresh();
+ document.getElementById('content').innerHTML=`<div class="panel"><div class="panelhead"><h2>Categories</h2><button class="btn primary" onclick="addCategory()">+ Add Category</button></div><table><thead><tr><th>Category</th><th>Toys</th><th>Action</th></tr></thead><tbody>${cats.map(c=>`<tr><td><strong>${c.name}</strong></td><td>${products.filter(p=>p.category===c.name).length}</td><td><button class="btn danger" onclick="removeCategory(${c.id})">Delete</button></td></tr>`).join('')}</tbody></table></div>`;
+}
+async function addCategory(){const name=prompt('Category name');if(!name||!name.trim())return;try{await api('/categories',{method:'POST',body:JSON.stringify({name:name.trim()})});categoriesPage()}catch(e){alert(e.message)}}
+async function removeCategory(id){if(!confirm('Delete this category?'))return;try{await api('/categories/'+id,{method:'DELETE'});categoriesPage()}catch(e){alert(e.message)}}
+
+// ---------------- ORDERS ----------------
+async function ordersPage(){
+ await refresh();
+ document.getElementById('content').innerHTML=`<div class="panel"><div class="panelhead"><div><h2>WhatsApp Orders</h2><small style="color:var(--muted)">Orders customers place through the store appear here automatically. You can also log one manually.</small></div><button class="btn primary" onclick="orderModal()">+ Record Order</button></div>${orders.map(orderCard).join('')||'<p style="color:var(--muted)">No orders yet.</p>'}</div>`;
+}
+function orderModal(id){
+ const o=id?orders.find(x=>x.id===id):{id:'(auto)',customer_name:'',phone:'',items:'',total:0,status:'New'};
+ document.getElementById('modalTitle').textContent=id?'Update WhatsApp Order':'Record WhatsApp Order';
+ document.getElementById('modalBody').innerHTML=`<div class="form"><div class="formgrid">
+ <div><label>Order ID</label><input id="o_id" value="${o.id}" readonly></div>
+ <div><label>Customer name</label><input id="o_customer" value="${o.customer_name||''}"></div>
+ <div><label>Phone (with country code)</label><input id="o_phone" value="${o.phone||''}" placeholder="919876543210"></div>
+ <div><label>Status</label><select id="o_status">${['New','Confirmed','Packed','Shipped','Delivered','Cancelled'].map(s=>`<option ${s===o.status?'selected':''}>${s}</option>`).join('')}</select></div>
+ <div class="full"><label>Items</label><textarea id="o_items">${o.items||''}</textarea></div>
+ <div><label>Total (₹)</label><input id="o_total" type="number" value="${o.total||0}"></div>
+ </div><div id="o_err" class="err"></div><div class="actions" style="justify-content:flex-end"><button class="btn ghost" onclick="closeModal()">Cancel</button><button class="btn primary" onclick="saveOrder('${id||''}')">Save Order</button></div></div>`;
+ openModal();
+}
+async function saveOrder(id){
+ const body={customer_name:document.getElementById('o_customer').value.trim(),phone:document.getElementById('o_phone').value.trim(),items:document.getElementById('o_items').value.trim(),total:document.getElementById('o_total').value,status:document.getElementById('o_status').value};
+ try{
+  if(id)await api('/orders/'+id,{method:'PUT',body:JSON.stringify(body)});
+  else{ if(!body.items)return document.getElementById('o_err').textContent='Add at least an item description.'; await api('/orders',{method:'POST',body:JSON.stringify({items:[{name:body.items,qty:1,price:Number(body.total)||0}],customer_name:body.customer_name,phone:body.phone})}); }
+  closeModal();ordersPage();
+ }catch(e){document.getElementById('o_err').textContent=e.message}
+}
+function openWA(phone,name){const n=(phone||'').replace(/\D/g,'');if(!n)return alert('Customer phone number is missing.');window.open('https://wa.me/'+n+'?text='+encodeURIComponent('Hello '+(name||'')+', this is '+(settings.store_name||'MANA BOMMALU')+'. We are following up on your toy order.'),'_blank')}
+
+// ---------------- CUSTOMERS ----------------
+async function customersPage(){
+ await refresh();
+ document.getElementById('content').innerHTML=`<div class="panel"><div class="panelhead"><h2>Customers</h2><small style="color:var(--muted)">Built automatically from WhatsApp orders.</small></div><table><thead><tr><th>Name</th><th>WhatsApp</th><th>Orders</th><th>Last order</th><th>Action</th></tr></thead><tbody>${customers.map(c=>`<tr>
+<td><strong>${c.name||'—'}</strong></td>
+<td>${c.phone||'Not provided'}</td>
+<td>${c.orders}</td>
+<td>${formatDate(c.last)}</td>
+<td>
+  ${c.phone
+    ? `<button class="btn wa" onclick="openWA('${c.phone}','${c.name||''}')">WhatsApp</button>`
+    : `<span style="color:var(--muted)">No phone</span>`
+  }
+</td>
+</tr>`).join('')
+||'<tr><td colspan="5" style="color:var(--muted)">No customers yet.</td></tr>'}
+
+// ---------------- REPORTS ----------------
+async function reportsPage(){
+ await refresh();
+ const total=orders.filter(o=>o.status!=='Cancelled').reduce((s,o)=>s+o.total,0),avg=orders.length?Math.round(total/orders.length):0;
+ document.getElementById('content').innerHTML=`<div class="stats"><div class="stat"><strong>${money(total)}</strong><small>Total recorded sales</small></div><div class="stat"><strong>${orders.length}</strong><small>Total WhatsApp orders</small></div><div class="stat"><strong>${money(avg)}</strong><small>Average order value</small></div><div class="stat"><strong>${products.reduce((s,p)=>s+(p.stockQty||0),0)}</strong><small>Total stock units</small></div></div><div class="panel"><div class="panelhead"><h2>Toys by price</h2></div><table><thead><tr><th>Toy</th><th>Category</th><th>Price</th><th>Stock</th></tr></thead><tbody>${products.slice().sort((a,b)=>b.price-a.price).map(p=>`<tr><td>${pic(p.image_url)==='🧸'?'🧸':'🖼️'} <strong>${p.name}</strong></td><td>${p.category}</td><td>${money(p.price)}</td><td>${p.stockQty}</td></tr>`).join('')||'<tr><td colspan="4" style="color:var(--muted)">No toys yet.</td></tr>'}</tbody></table></div>`;
+}
+
+// ---------------- STORE SETTINGS ----------------
+async function storePage(){
+ await refresh();
+ document.getElementById('content').innerHTML=`<div class="panel"><div class="panelhead"><div><h2>Store Settings</h2><small style="color:var(--muted)">These control what customers see and where WhatsApp orders are sent.</small></div></div><div class="form"><div class="formgrid">
+ <div><label>Store name</label><input id="s_name" value="${settings.store_name||''}"></div>
+ <div><label>Tagline</label><input id="s_tag" value="${settings.tagline||''}"></div>
+ <div class="full"><label>WhatsApp number (digits only, country code included)</label><input id="s_wa" placeholder="Example: 919876543210" value="${settings.whatsapp_number||''}"></div>
+ </div><div class="notice" style="margin-top:16px">This number is where every "Buy Now on WhatsApp" click on the customer site will open a chat. The order is also saved here in Orders automatically the moment the customer sends it.</div>
+ <div class="actions" style="justify-content:flex-end"><button class="btn primary" onclick="saveStore()">Save Settings</button></div>
+ </div></div>
+
+ <div class="panel"><div class="panelhead"><h2>Change Admin Password</h2></div><div class="form"><div class="formgrid">
+ <div><label>Current password</label><input id="cp_old" type="password"></div>
+ <div><label>New password</label><input id="cp_new" type="password"></div>
+ </div><div id="cp_err" class="err"></div><div class="actions" style="justify-content:flex-end"><button class="btn primary" onclick="changePassword()">Update Password</button></div></div></div>`;
+}
+async function saveStore(){
+ try{
+  await api('/settings',{method:'PUT',body:JSON.stringify({store_name:document.getElementById('s_name').value,tagline:document.getElementById('s_tag').value,whatsapp_number:document.getElementById('s_wa').value.replace(/\D/g,'')})});
+  alert('Store settings saved.');
+ }catch(e){alert(e.message)}
+}
+async function changePassword(){
+ document.getElementById('cp_err').textContent='';
+ try{
+  await api('/auth/change-password',{method:'POST',body:JSON.stringify({currentPassword:document.getElementById('cp_old').value,newPassword:document.getElementById('cp_new').value})});
+  alert('Password updated.');document.getElementById('cp_old').value='';document.getElementById('cp_new').value='';
+ }catch(e){document.getElementById('cp_err').textContent=e.message}
+}
+
+function openModal(){document.getElementById('modal').classList.add('open')}
+function closeModal(){document.getElementById('modal').classList.remove('open')}
+
+if(TOKEN)enterAdmin(); else document.getElementById('loginScreen').style.display='grid';
+</script>
+</body>
+</html>
