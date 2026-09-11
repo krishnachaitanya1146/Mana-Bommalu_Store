@@ -1,3 +1,4 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,250 +9,1551 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
- --bg:#F3EEDF;--bg-soft:#EAE1C8;--card:#FBF9F2;--olive-100:#DEE1C4;
- --olive-300:#A9AE79;--olive-500:#787F4C;--olive-600:#656B41;--olive-800:#3E4527;
- --ink:#2A2818;--muted:#6E6A54;--accent:#B5892C;--accent-deep:#8F6A1E;
- --line:#D6C9A3;--white:#FFFDF8;--danger:#9C4A3B;--wa:#4C7A3F;
+--bg:#F3EEDF;--bg-soft:#EAE1C8;--card:#FBF9F2;--olive-100:#DEE1C4;
+--olive-300:#A9AE79;--olive-500:#787F4C;--olive-600:#656B41;--olive-800:#3E4527;
+--ink:#2A2818;--muted:#6E6A54;--accent:#B5892C;--accent-deep:#8F6A1E;
+--line:#D6C9A3;--white:#FFFDF8;--danger:#9C4A3B;--wa:#4C7A3F;
 }
-*{box-sizing:border-box}html{scroll-behavior:smooth}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:'Work Sans',sans-serif}
-button,input,select{font:inherit}button{cursor:pointer}
-a{text-decoration:none;color:inherit}.wrap{max-width:1180px;margin:auto;padding:0 28px}
+button,input,select{font:inherit}
+button{cursor:pointer}
+a{text-decoration:none;color:inherit}
+.wrap{max-width:1180px;margin:auto;padding:0 28px}
 h1,h2,h3,.brand{font-family:'Fraunces',serif;color:var(--olive-800);font-weight:500;margin:0}
 .topbar{position:sticky;top:0;z-index:30;background:rgba(243,238,223,.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
 .nav{height:72px;display:flex;align-items:center;justify-content:space-between;gap:20px}
-.brand{font-size:22px;display:flex;align-items:center;gap:9px}.dot{width:9px;height:9px;background:var(--accent);border-radius:50%}
-.navlinks{display:flex;gap:6px}.navlinks button{border:0;background:transparent;color:var(--olive-800);padding:9px 14px;border-radius:20px}
+.brand{font-size:22px;display:flex;align-items:center;gap:9px}
+.dot{width:9px;height:9px;background:var(--accent);border-radius:50%}
+.navlinks{display:flex;gap:6px}
+.navlinks button{border:0;background:transparent;color:var(--olive-800);padding:9px 14px;border-radius:20px}
 .navlinks button:hover,.navlinks button.active{background:var(--olive-100)}
-.navright{display:flex;gap:10px;align-items:center}.round{width:40px;height:40px;border:0;border-radius:50%;background:var(--olive-100);color:var(--olive-800);position:relative}
+.navright{display:flex;gap:10px;align-items:center}
+.round{width:40px;height:40px;border:0;border-radius:50%;background:var(--olive-100);color:var(--olive-800);position:relative}
 .badge{position:absolute;right:-3px;top:-3px;min-width:18px;height:18px;padding:0 4px;border-radius:10px;background:var(--accent-deep);color:#fff;font-size:10px;display:grid;place-items:center}
 .adminlink{border:1px solid var(--olive-600);background:transparent;color:var(--olive-800);padding:9px 16px;border-radius:20px;font-size:13px;font-weight:700}
-.page{padding:48px 0 80px}.eyebrow{color:var(--accent-deep);font-size:13px;font-weight:700;margin-bottom:10px}
+.page{padding:48px 0 80px}
+.eyebrow{color:var(--accent-deep);font-size:13px;font-weight:700;margin-bottom:10px}
 .hero{display:grid;grid-template-columns:1.05fr .95fr;gap:55px;align-items:center;padding:25px 0 75px}
-.hero h1{font-size:54px;line-height:1.08}.hero h1 em{color:var(--accent-deep)}
+.hero h1{font-size:54px;line-height:1.08}
+.hero h1 em{color:var(--accent-deep)}
 .hero p{color:var(--muted);font-size:16px;line-height:1.7;max-width:500px;margin:20px 0 28px}
-.actions{display:flex;gap:12px;flex-wrap:wrap}.btn{border:1px solid transparent;border-radius:7px;padding:13px 22px;font-weight:700}
-.primary{background:var(--olive-600);color:#fff}.primary:hover{background:var(--olive-800)}
+.actions{display:flex;gap:12px;flex-wrap:wrap}
+.btn{border:1px solid transparent;border-radius:7px;padding:13px 22px;font-weight:700}
+.primary{background:var(--olive-600);color:#fff}
+.primary:hover{background:var(--olive-800)}
 .primary:disabled{background:var(--olive-300);cursor:not-allowed}
 .ghost{background:transparent;border-color:var(--olive-600);color:var(--olive-800)}
-.whatsapp{background:var(--wa);color:#fff;display:inline-flex;align-items:center;gap:8px;justify-content:center}.whatsapp:hover{filter:brightness(.9)}
+.whatsapp{background:var(--wa);color:#fff;display:inline-flex;align-items:center;gap:8px;justify-content:center}
+.whatsapp:hover{filter:brightness(.9)}
 .whatsapp:disabled{background:var(--olive-300);cursor:not-allowed}
 .hero-art{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:28px;min-height:350px;display:grid;place-items:center}
 .toy-stack{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;width:100%}
 .toy-art{aspect-ratio:1;background:var(--bg-soft);border-radius:12px;display:grid;place-items:center;font-size:54px;overflow:hidden}
 .toy-art img{width:100%;height:100%;object-fit:cover}
-.toy-art:nth-child(2){transform:rotate(-3deg);background:var(--olive-100)}.toy-art:nth-child(5){transform:rotate(3deg)}
-.sectionhead{display:flex;justify-content:space-between;align-items:end;gap:20px;margin-bottom:25px}.sectionhead p{color:var(--muted);margin:7px 0 0}
+.toy-art:nth-child(2){transform:rotate(-3deg);background:var(--olive-100)}
+.toy-art:nth-child(5){transform:rotate(3deg)}
+.sectionhead{display:flex;justify-content:space-between;align-items:end;gap:20px;margin-bottom:25px}
+.sectionhead p{color:var(--muted);margin:7px 0 0}
 .toolbar{background:var(--card);border:1px solid var(--line);padding:14px;border-radius:10px;display:flex;gap:10px;flex-wrap:wrap;margin-bottom:24px}
 .search{flex:1;min-width:220px;padding:10px 13px;border:1px solid var(--line);border-radius:20px;background:var(--bg)}
-.chip{border:1px solid var(--line);background:var(--bg);border-radius:20px;padding:8px 14px;color:var(--olive-800)}.chip.active{background:var(--olive-600);color:#fff}
-.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}.card{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;transition:.15s}.card:hover{transform:translateY(-3px);border-color:var(--olive-500)}
-.pic{aspect-ratio:1;background:var(--bg-soft);display:grid;place-items:center;font-size:72px;position:relative;overflow:hidden}.pic img{width:100%;height:100%;object-fit:cover}.tag{position:absolute;left:10px;top:10px;background:var(--accent);color:#fff;padding:4px 9px;border-radius:12px;font-size:11px;font-weight:700}
-.body{padding:16px}.cat{font-size:11.5px;color:var(--muted)}.name{font-size:16px;font-weight:700;color:var(--olive-800);margin:5px 0}.desc{font-size:13px;line-height:1.55;color:var(--muted)}
-.price{font-weight:700;font-size:18px;margin-top:12px}.was{text-decoration:line-through;color:var(--muted);font-size:13px;margin-left:7px}.stock{font-size:12px;color:var(--olive-600);font-weight:700;margin-top:5px}
+.chip{border:1px solid var(--line);background:var(--bg);border-radius:20px;padding:8px 14px;color:var(--olive-800)}
+.chip.active{background:var(--olive-600);color:#fff}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;transition:.15s}
+.card:hover{transform:translateY(-3px);border-color:var(--olive-500)}
+.pic{aspect-ratio:1;background:var(--bg-soft);display:grid;place-items:center;font-size:72px;position:relative;overflow:hidden}
+.pic img{width:100%;height:100%;object-fit:cover}
+.tag{position:absolute;left:10px;top:10px;background:var(--accent);color:#fff;padding:4px 9px;border-radius:12px;font-size:11px;font-weight:700;z-index:2}
+.body{padding:16px}
+.cat{font-size:11.5px;color:var(--muted)}
+.name{font-size:16px;font-weight:700;color:var(--olive-800);margin:5px 0}
+.desc{font-size:13px;line-height:1.55;color:var(--muted)}
+.price{font-weight:700;font-size:18px;margin-top:12px}
+.was{text-decoration:line-through;color:var(--muted);font-size:13px;margin-left:7px}
+.stock{font-size:12px;color:var(--olive-600);font-weight:700;margin-top:5px}
 .card .btn{width:100%;margin-top:14px}
-.product{display:grid;grid-template-columns:1fr 1fr;gap:55px}.product-image{background:var(--card);border:1px solid var(--line);border-radius:16px;min-height:520px;display:grid;place-items:center;font-size:150px;overflow:hidden}.product-image img{width:100%;height:100%;object-fit:cover}
-.product h2{font-size:38px;line-height:1.15}.product .lead{color:var(--muted);line-height:1.7;white-space:pre-line}.meta{display:flex;gap:25px;flex-wrap:wrap;margin:20px 0}.meta small{display:block;color:var(--muted);margin-bottom:4px}.meta strong{color:var(--olive-800)}
-.optrow{display:flex;gap:16px;flex-wrap:wrap;margin:18px 0}.optrow div{min-width:150px}.optrow label{display:block;font-size:12px;font-weight:700;color:var(--muted);margin-bottom:6px}.optrow select{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:var(--card)}
-.qty{display:flex;align-items:center;gap:12px;margin:25px 0}.qtybox{display:flex;border:1px solid var(--line);border-radius:8px;overflow:hidden}.qtybox button{border:0;background:var(--bg-soft);width:40px;height:40px}.qtybox button:disabled{opacity:.4;cursor:not-allowed}.qtybox span{width:42px;display:grid;place-items:center;font-weight:700}
+.product{display:grid;grid-template-columns:1fr 1fr;gap:55px}
+.product-gallery{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px}
+.product-image{background:var(--bg-soft);border-radius:12px;min-height:520px;display:grid;place-items:center;font-size:150px;overflow:hidden}
+.product-image img{width:100%;height:100%;object-fit:cover}
+.gallery-main{position:relative}
+.gallery-main button{position:absolute;top:50%;transform:translateY(-50%);width:42px;height:42px;border:0;border-radius:50%;background:rgba(62,69,39,.82);color:#fff;font-size:24px;z-index:3}
+.gallery-prev{left:12px}
+.gallery-next{right:12px}
+.gallery-thumbs{display:flex;gap:9px;overflow-x:auto;padding:12px 2px 2px}
+.gallery-thumb{width:70px;height:70px;flex:0 0 70px;border:2px solid transparent;border-radius:8px;background:var(--bg-soft);overflow:hidden;padding:0}
+.gallery-thumb.active{border-color:var(--olive-600)}
+.gallery-thumb img{width:100%;height:100%;object-fit:cover}
+.product h2{font-size:38px;line-height:1.15}
+.product .lead{color:var(--muted);line-height:1.7;white-space:pre-line}
+.meta{display:flex;gap:25px;flex-wrap:wrap;margin:20px 0}
+.meta small{display:block;color:var(--muted);margin-bottom:4px}
+.meta strong{color:var(--olive-800)}
+.optrow{display:flex;gap:16px;flex-wrap:wrap;margin:18px 0}
+.optrow div{min-width:150px}
+.optrow label{display:block;font-size:12px;font-weight:700;color:var(--muted);margin-bottom:6px}
+.optrow select{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:var(--card)}
+.qty{display:flex;align-items:center;gap:12px;margin:25px 0}
+.qtybox{display:flex;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.qtybox button{border:0;background:var(--bg-soft);width:40px;height:40px}
+.qtybox button:disabled{opacity:.4;cursor:not-allowed}
+.qtybox span{width:42px;display:grid;place-items:center;font-weight:700}
 .notice{background:var(--olive-100);border:1px solid var(--line);padding:13px 15px;border-radius:8px;color:var(--olive-800);font-size:13px;line-height:1.5}
-.cartlayout{display:grid;grid-template-columns:1.5fr .8fr;gap:35px}.cartitem{display:grid;grid-template-columns:75px 1fr auto;gap:15px;align-items:center;padding:15px 0;border-bottom:1px solid var(--line)}.thumb{width:75px;height:75px;background:var(--bg-soft);border-radius:9px;display:grid;place-items:center;font-size:35px;overflow:hidden}.thumb img{width:100%;height:100%;object-fit:cover}.remove{border:0;background:none;color:var(--danger);font-size:12px;padding:5px 0}.summary{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:22px;height:max-content}.row{display:flex;justify-content:space-between;padding:9px 0;color:var(--muted)}.total{border-top:1px solid var(--line);padding-top:14px;margin-top:8px;color:var(--ink);font-weight:700;font-size:18px}
-.empty{text-align:center;background:var(--card);border:1px dashed var(--line);padding:60px 20px;border-radius:12px}.empty p{color:var(--muted)}
-.aboutgrid{display:grid;grid-template-columns:1fr 1fr;gap:45px}.info{border-bottom:1px solid var(--line);padding:14px 0}.info small{display:block;color:var(--muted);margin-bottom:4px}
+.cartlayout{display:grid;grid-template-columns:1.5fr .8fr;gap:35px}
+.cartitem{display:grid;grid-template-columns:75px 1fr auto;gap:15px;align-items:center;padding:15px 0;border-bottom:1px solid var(--line)}
+.thumb{width:75px;height:75px;background:var(--bg-soft);border-radius:9px;display:grid;place-items:center;font-size:35px;overflow:hidden}
+.thumb img{width:100%;height:100%;object-fit:cover}
+.remove{border:0;background:none;color:var(--danger);font-size:12px;padding:5px 0}
+.summary{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:22px;height:max-content}
+.row{display:flex;justify-content:space-between;padding:9px 0;color:var(--muted)}
+.total{border-top:1px solid var(--line);padding-top:14px;margin-top:8px;color:var(--ink);font-weight:700;font-size:18px}
+.empty{text-align:center;background:var(--card);border:1px dashed var(--line);padding:60px 20px;border-radius:12px}
+.empty p{color:var(--muted)}
+.aboutgrid{display:grid;grid-template-columns:1fr 1fr;gap:45px}
+.info{border-bottom:1px solid var(--line);padding:14px 0}
+.info small{display:block;color:var(--muted);margin-bottom:4px}
 footer{border-top:1px solid var(--line);padding:38px 0;color:var(--muted);font-size:13px}
-.float{position:fixed;right:22px;bottom:22px;z-index:50;display:flex;flex-direction:column;gap:10px}.fab{width:54px;height:54px;border:0;border-radius:50%;box-shadow:0 8px 20px rgba(42,40,24,.18);color:#fff;display:grid;place-items:center;font-size:22px}.fab.wa{background:var(--wa)}.fab.cart{background:var(--accent)}
-.toast{position:fixed;left:50%;bottom:25px;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:var(--olive-800);color:#fff;padding:12px 18px;border-radius:8px;z-index:100;font-size:13px;transition:.2s}.toast.show{opacity:1;transform:translate(-50%,0)}
+.float{position:fixed;right:22px;bottom:22px;z-index:50;display:flex;flex-direction:column;gap:10px}
+.fab{width:54px;height:54px;border:0;border-radius:50%;box-shadow:0 8px 20px rgba(42,40,24,.18);color:#fff;display:grid;place-items:center;font-size:22px}
+.fab.wa{background:var(--wa)}
+.fab.cart{background:var(--accent)}
+.toast{position:fixed;left:50%;bottom:25px;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:var(--olive-800);color:#fff;padding:12px 18px;border-radius:8px;z-index:100;font-size:13px;transition:.2s}
+.toast.show{opacity:1;transform:translate(-50%,0)}
 .loading{padding:60px;text-align:center;color:var(--muted)}
-@media(max-width:900px){.hero,.product,.cartlayout,.aboutgrid{grid-template-columns:1fr}.grid{grid-template-columns:repeat(2,1fr)}.navlinks{display:none}.hero h1{font-size:40px}}
-@media(max-width:520px){.wrap{padding:0 17px}.grid{grid-template-columns:1fr 1fr;gap:12px}.body{padding:12px}.pic{font-size:52px}.hero{padding-top:5px}.product-image{min-height:330px}.cartitem{grid-template-columns:55px 1fr}.cartitem>.qtybox{grid-column:2}.thumb{width:55px;height:55px}}
+@media(max-width:900px){
+.hero,.product,.cartlayout,.aboutgrid{grid-template-columns:1fr}
+.grid{grid-template-columns:repeat(2,1fr)}
+.navlinks{display:none}
+.hero h1{font-size:40px}
+}
+@media(max-width:520px){
+.wrap{padding:0 17px}
+.grid{grid-template-columns:1fr 1fr;gap:12px}
+.body{padding:12px}
+.pic{font-size:52px}
+.hero{padding-top:5px}
+.product-image{min-height:330px}
+.cartitem{grid-template-columns:55px 1fr}
+.cartitem>.qtybox{grid-column:2}
+.thumb{width:55px;height:55px}
+}
 </style>
 </head>
+
 <body>
+
 <header class="topbar">
- <div class="wrap nav">
-  <a class="brand" href="#home" onclick="show('home')"><span class="dot"></span><span id="storeName">MANA BOMMALU</span></a>
-  <nav class="navlinks">
-   <button class="active" onclick="show('home')">Home</button>
-   <button onclick="show('shop')">Toys</button>
-   <button onclick="show('about')">About</button>
-   <button onclick="show('contact')">Contact</button>
-  </nav>
-  <div class="navright">
-   <button class="round" onclick="show('cart')" title="Selection">🛒<span class="badge" id="count">0</span></button>
-   <a class="adminlink" href="/admin">Admin Login</a>
-  </div>
- </div>
+<div class="wrap nav">
+<a class="brand" href="#home" onclick="show('home')">
+<span class="dot"></span>
+<span id="storeName">MANA BOMMALU</span>
+</a>
+
+<nav class="navlinks">
+<button class="active" onclick="show('home')">Home</button>
+<button onclick="show('shop')">Toys</button>
+<button onclick="show('about')">About</button>
+<button onclick="show('contact')">Contact</button>
+</nav>
+
+<div class="navright">
+<button class="round" onclick="show('cart')" title="Selection">
+🛒<span class="badge" id="count">0</span>
+</button>
+<a class="adminlink" href="/admin">Admin Login</a>
+</div>
+</div>
 </header>
 
-<main id="app"><div class="loading">Loading toys…</div></main>
+<main id="app">
+<div class="loading">Loading toys…</div>
+</main>
 
 <div class="float">
- <button class="fab cart" onclick="show('cart')" title="Your selection">🛒</button>
- <button class="fab wa" onclick="contactWhatsApp()" title="WhatsApp">◔</button>
+<button class="fab cart" onclick="show('cart')" title="Your selection">🛒</button>
+<button class="fab wa" onclick="contactWhatsApp()" title="WhatsApp">◔</button>
 </div>
+
 <div id="toast" class="toast"></div>
 
 <script>
+
 const API='/api';
-let products=[], categories=[], settings={}, cart=load('mb_cart',[]), current=null, currentVariant=null, qty=1, filter='All', search='';
 
-function load(k,f){try{return JSON.parse(localStorage.getItem(k))??f}catch(e){return f}}
-function save(k,v){localStorage.setItem(k,JSON.stringify(v))}
-function money(n){return '₹'+Number(n||0).toLocaleString('en-IN')}
-function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');clearTimeout(window.tt);window.tt=setTimeout(()=>t.classList.remove('show'),2300)}
-function pic(url,emoji){return url?`<img src="${url}" alt="" onerror="this.parentElement.innerHTML='🧸'">`:(emoji||'🧸')}
+let products=[];
+let categories=[];
+let settings={};
+let cart=load('mb_cart',[]);
+let current=null;
+let currentVariant=null;
+let currentImageIndex=0;
+let qty=1;
+let filter='All';
+let search='';
 
-async function api(path,opts){
- const res=await fetch(API+path,opts);
- if(!res.ok){const e=await res.json().catch(()=>({error:'Something went wrong.'}));throw new Error(e.error||'Something went wrong.')}
- return res.status===204?null:res.json();
+function load(k,f){
+try{
+return JSON.parse(localStorage.getItem(k))??f
+}catch(e){
+return f
 }
+}
+
+function save(k,v){
+localStorage.setItem(k,JSON.stringify(v))
+}
+
+function money(n){
+return '₹'+Number(n||0).toLocaleString('en-IN')
+}
+
+function toast(m){
+const t=document.getElementById('toast');
+t.textContent=m;
+t.classList.add('show');
+clearTimeout(window.tt);
+window.tt=setTimeout(()=>t.classList.remove('show'),2300)
+}
+
+/* =========================================================
+   MULTIPLE IMAGE SUPPORT
+   Supports:
+   image_urls: [...]
+   image_url: "..."
+   ========================================================= */
+
+function imagesOf(p){
+
+if(!p)return [];
+
+if(Array.isArray(p.image_urls) && p.image_urls.length){
+return p.image_urls.filter(Boolean);
+}
+
+if(Array.isArray(p.images) && p.images.length){
+return p.images
+.map(x=>typeof x==='string'?x:(x.url||x.image_url))
+.filter(Boolean);
+}
+
+if(p.image_url){
+return [p.image_url];
+}
+
+if(p.image){
+return [p.image];
+}
+
+return [];
+}
+
+function mainImageOf(p){
+const imgs=imagesOf(p);
+return imgs[0]||'';
+}
+
+function pic(url,emoji){
+return url
+?`<img src="${url}" alt="" onerror="this.style.display='none';this.parentElement.innerHTML='🧸'">`
+:(emoji||'🧸')
+}
+
+/* =========================================================
+   API
+   ========================================================= */
+
+async function api(path,opts={}){
+const res=await fetch(API+path,opts);
+
+if(!res.ok){
+const e=await res.json().catch(()=>({error:'Something went wrong.'}));
+throw new Error(e.error||'Something went wrong.')
+}
+
+return res.status===204?null:res.json();
+}
+
+/* =========================================================
+   BOOT
+   ========================================================= */
 
 async function boot(){
- try{
-  [products,categories,settings]=await Promise.all([api('/products'),api('/categories'),api('/settings')]);
-  document.getElementById('storeName').textContent=settings.store_name||'MANA BOMMALU';
-  document.title=(settings.store_name||'MANA BOMMALU')+' — '+(settings.tagline||'Toys made to be loved');
-  syncCartBadge();
-  show('home');
- }catch(e){
-  document.getElementById('app').innerHTML=`<div class="page wrap"><div class="empty"><h3>Couldn't load the store</h3><p>${e.message}. Make sure the server is running and refresh this page.</p></div></div>`;
- }
+
+try{
+
+[products,categories,settings]=await Promise.all([
+api('/products'),
+api('/categories'),
+api('/settings')
+]);
+
+document.getElementById('storeName').textContent=
+settings.store_name||'MANA BOMMALU';
+
+document.title=
+(settings.store_name||'MANA BOMMALU')+
+' — '+
+(settings.tagline||'Toys made to be loved');
+
+syncCartBadge();
+
+show('home');
+
+}catch(e){
+
+document.getElementById('app').innerHTML=`
+<div class="page wrap">
+<div class="empty">
+<h3>Couldn't load the store</h3>
+<p>${e.message}. Make sure the server is running and refresh this page.</p>
+</div>
+</div>
+`;
+
 }
 
-function product(id){return products.find(p=>p.id==id)}
-function variantsOf(p){return p.variants||[]}
-function sizesOf(p){return [...new Set(variantsOf(p).map(v=>v.size))]}
-function coloursOf(p,size){return [...new Set(variantsOf(p).filter(v=>!size||v.size===size).map(v=>v.colour).filter(Boolean))]}
-function findVariant(p,size,colour){return variantsOf(p).find(v=>v.size===size&&(v.colour===colour||(!v.colour&&!colour)))}
-function priceOf(p,v){return (v&&v.price)?v.price:p.price}
-function totalStock(p){return variantsOf(p).reduce((s,v)=>s+(v.stock_qty||0),0)}
+}
 
-function syncCartBadge(){document.getElementById('count').textContent=cart.reduce((s,x)=>s+x.qty,0)}
-function selected(){return cart.map(x=>({...x}))}
-function cartTotal(){return selected().reduce((s,x)=>s+x.price*x.qty,0)}
+/* =========================================================
+   PRODUCT HELPERS
+   ========================================================= */
+
+function product(id){
+return products.find(p=>p.id==id)
+}
+
+function variantsOf(p){
+return p.variants||[]
+}
+
+function sizesOf(p){
+return [...new Set(
+variantsOf(p)
+.map(v=>v.size)
+.filter(Boolean)
+)]
+}
+
+function coloursOf(p,size){
+return [...new Set(
+variantsOf(p)
+.filter(v=>!size||v.size===size)
+.map(v=>v.colour)
+.filter(Boolean)
+)]
+}
+
+function findVariant(p,size,colour){
+
+return variantsOf(p).find(v=>
+v.size===size &&
+(
+v.colour===colour ||
+(!v.colour&&!colour)
+)
+)
+
+}
+
+function priceOf(p,v){
+return v&&v.price?p.price=v.price:v?p.price:p.price
+}
+
+function totalStock(p){
+if(!variantsOf(p).length){
+return Number(p.stockQty||p.stock_qty||0)
+}
+
+return variantsOf(p).reduce(
+(s,v)=>s+Number(v.stock_qty||v.stockQty||0),
+0
+)
+}
+
+/* =========================================================
+   CART
+   ========================================================= */
+
+function syncCartBadge(){
+document.getElementById('count').textContent=
+cart.reduce((s,x)=>s+x.qty,0)
+}
+
+function selected(){
+return cart.map(x=>({...x}))
+}
+
+function cartTotal(){
+return selected().reduce(
+(s,x)=>s+x.price*x.qty,
+0
+)
+}
 
 function addToCart(p,v,n){
- if(!v||v.stock_qty<1)return toast('This option is currently out of stock');
- const key=p.id+'|'+v.id;
- const old=cart.find(x=>x.key===key);
- if(old)old.qty=Math.min(old.qty+n,v.stock_qty);
- else cart.push({key,productId:p.id,variantId:v.id,name:p.name,size:v.size,colour:v.colour,price:priceOf(p,v),image_url:p.image_url,qty:Math.min(n,v.stock_qty)});
- save('mb_cart',cart);syncCartBadge();toast('Added to your selection');
+
+if(!v || Number(v.stock_qty||v.stockQty||0)<1){
+return toast('This option is currently out of stock')
 }
+
+const key=p.id+'|'+v.id;
+const old=cart.find(x=>x.key===key);
+
+const stock=Number(v.stock_qty||v.stockQty||0);
+
+if(old){
+old.qty=Math.min(old.qty+n,stock)
+}else{
+
+cart.push({
+key,
+productId:p.id,
+variantId:v.id,
+name:p.name,
+size:v.size,
+colour:v.colour,
+price:Number(v.price||p.price),
+image_url:mainImageOf(p),
+qty:Math.min(n,stock)
+});
+
+}
+
+save('mb_cart',cart);
+syncCartBadge();
+toast('Added to your selection');
+
+}
+
 function changeQty(key,d){
- const x=cart.find(c=>c.key===key);if(!x)return;
- const p=product(x.productId);const v=p&&variantsOf(p).find(vv=>vv.id===x.variantId);
- x.qty+=d;if(x.qty<=0)cart=cart.filter(c=>c.key!==key);else if(v)x.qty=Math.min(x.qty,v.stock_qty);
- save('mb_cart',cart);syncCartBadge();show('cart');
+
+const x=cart.find(c=>c.key===key);
+
+if(!x)return;
+
+const p=product(x.productId);
+
+const v=p&&variantsOf(p)
+.find(vv=>vv.id===x.variantId);
+
+x.qty+=d;
+
+if(x.qty<=0){
+
+cart=cart.filter(c=>c.key!==key);
+
+}else if(v){
+
+const stock=Number(v.stock_qty||v.stockQty||0);
+x.qty=Math.min(x.qty,stock);
+
 }
-function removeFromCart(key){cart=cart.filter(c=>c.key!==key);save('mb_cart',cart);syncCartBadge();show('cart')}
+
+save('mb_cart',cart);
+syncCartBadge();
+show('cart');
+
+}
+
+function removeFromCart(key){
+
+cart=cart.filter(c=>c.key!==key);
+
+save('mb_cart',cart);
+
+syncCartBadge();
+
+show('cart');
+
+}
+
+/* =========================================================
+   WHATSAPP
+   ========================================================= */
 
 function waMessage(items,total){
- let lines=['Hello '+(settings.store_name||'MANA BOMMALU')+' 👋','', 'I would like to order:',''];
- items.forEach(x=>lines.push(`🧸 ${x.name}${x.size?' — '+x.size:''}${x.colour?', '+x.colour:''} — Qty: ${x.qty} — ${money(x.price*x.qty)}`));
- lines.push('',`Estimated Total: ${money(total)}`,'','Please confirm availability, delivery charges and payment details.','Thank you!');
- return lines.join('\\n');
+
+let lines=[
+'Hello '+(settings.store_name||'MANA BOMMALU')+' 👋',
+'',
+'I would like to order:',
+''
+];
+
+items.forEach(x=>{
+
+lines.push(
+`🧸 ${x.name}`+
+(x.size?' — '+x.size:'')+
+(x.colour?', '+x.colour:'')+
+` — Qty: ${x.qty} — ${money(x.price*x.qty)}`
+);
+
+});
+
+lines.push(
+'',
+`Estimated Total: ${money(total)}`,
+'',
+'Please confirm availability, delivery charges and payment details.',
+'Thank you!'
+);
+
+return lines.join('\n');
+
 }
 
-// Records the order in the backend (so it appears in Admin > WhatsApp Orders)
-// THEN opens WhatsApp with the same details prefilled.
 async function contactWhatsApp(){
- const n=settings.whatsapp_number||'';
- if(!n){toast('Store WhatsApp number is not set up yet. Please contact us another way.');return}
- const items=selected();
- if(items.length===0){toast('Add a toy to your selection first');return}
- const total=cartTotal();
- let orderId='';
- try{
-  const order=await api('/orders',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({items,customer_name:'WhatsApp customer',phone:''})});
-  orderId=order.id;
- }catch(e){ /* still let them message even if logging failed */ }
- const msg=waMessage(items,total)+(orderId?`\\n\\nOrder Ref: ${orderId}`:'');
- window.open('https://wa.me/'+n.replace(/\\D/g,'')+'?text='+encodeURIComponent(msg),'_blank');
- cart=[];save('mb_cart',cart);syncCartBadge();
+
+const n=settings.whatsapp_number||'';
+
+if(!n){
+toast('Store WhatsApp number is not set up yet.');
+return
+}
+
+const items=selected();
+
+if(items.length===0){
+toast('Add a toy to your selection first');
+return
+}
+
+const total=cartTotal();
+
+let orderId='';
+
+try{
+
+const order=await api('/orders',{
+method:'POST',
+headers:{
+'Content-Type':'application/json'
+},
+body:JSON.stringify({
+items,
+customer_name:'WhatsApp customer',
+phone:''
+})
+});
+
+orderId=order.id;
+
+}catch(e){}
+
+const msg=
+waMessage(items,total)+
+(orderId?`\n\nOrder Ref: ${orderId}`:'');
+
+window.open(
+'https://wa.me/'+
+n.replace(/\D/g,'')+
+'?text='+
+encodeURIComponent(msg),
+'_blank'
+);
+
+cart=[];
+save('mb_cart',cart);
+syncCartBadge();
+
 }
 
 async function buyNowSingle(p,v,n){
- addToCart(p,v,n);
- await contactWhatsApp();
+
+addToCart(p,v,n);
+
+await contactWhatsApp();
+
 }
+
+/* =========================================================
+   NAVIGATION
+   ========================================================= */
 
 function show(page){
- syncCartBadge();window.scrollTo({top:0,behavior:'smooth'});
- document.querySelectorAll('.navlinks button').forEach(b=>b.classList.remove('active'));
- const map={home:0,shop:1,about:2,contact:3};
- if(map[page]!==undefined)document.querySelectorAll('.navlinks button')[map[page]].classList.add('active');
- if(page==='home')renderHome(); else if(page==='shop')renderShop(); else if(page==='product')renderProduct(); else if(page==='cart')renderCart(); else if(page==='about'||page==='contact')renderAbout(page);
+
+syncCartBadge();
+
+window.scrollTo({
+top:0,
+behavior:'smooth'
+});
+
+document.querySelectorAll('.navlinks button')
+.forEach(b=>b.classList.remove('active'));
+
+const map={
+home:0,
+shop:1,
+about:2,
+contact:3
+};
+
+if(map[page]!==undefined){
+
+document
+.querySelectorAll('.navlinks button')[map[page]]
+.classList.add('active');
+
 }
+
+if(page==='home')renderHome();
+else if(page==='shop')renderShop();
+else if(page==='product')renderProduct();
+else if(page==='cart')renderCart();
+else if(page==='about'||page==='contact')renderAbout(page);
+
+}
+
+/* =========================================================
+   HOME
+   ========================================================= */
 
 function renderHome(){
- document.getElementById('app').innerHTML=`<section class="page wrap">
- <div class="hero"><div><div class="eyebrow">${(settings.store_name||'MANA BOMMALU')}</div><h1>Toys made to be <em>loved.</em></h1><p>${settings.tagline||'Thoughtfully chosen toys for little ones — simple, playful and made for real childhood.'}</p><div class="actions"><button class="btn primary" onclick="show('shop')">Explore Toys</button><button class="btn whatsapp" onclick="contactWhatsApp()">Chat on WhatsApp</button></div></div>
- <div class="hero-art"><div class="toy-stack">${products.slice(0,6).map(p=>`<div class="toy-art">${pic(p.image_url,'🧸')}</div>`).join('')||'<div class="toy-art">🧸</div>'}</div></div></div>
- <div class="sectionhead"><div><div class="eyebrow">OUR COLLECTION</div><h2>Shop our toys</h2><p>Choose a toy and tell us how many you want.</p></div><button class="btn ghost" onclick="show('shop')">View all toys →</button></div>
- <div class="grid">${products.slice(0,4).map(card).join('')||'<p style="color:var(--muted)">No toys added yet.</p>'}</div>
- </section>`;
+
+document.getElementById('app').innerHTML=`
+
+<section class="page wrap">
+
+<div class="hero">
+
+<div>
+
+<div class="eyebrow">
+${settings.store_name||'MANA BOMMALU'}
+</div>
+
+<h1>
+Toys made to be <em>loved.</em>
+</h1>
+
+<p>
+${settings.tagline||'Thoughtfully chosen toys for little ones — simple, playful and made for real childhood.'}
+</p>
+
+<div class="actions">
+
+<button class="btn primary"
+onclick="show('shop')">
+Explore Toys
+</button>
+
+<button class="btn whatsapp"
+onclick="contactWhatsApp()">
+Chat on WhatsApp
+</button>
+
+</div>
+
+</div>
+
+<div class="hero-art">
+
+<div class="toy-stack">
+
+${
+products
+.slice(0,6)
+.map(p=>`
+<div class="toy-art">
+${pic(mainImageOf(p),'🧸')}
+</div>
+`)
+.join('')
+||
+'<div class="toy-art">🧸</div>'
 }
+
+</div>
+
+</div>
+
+</div>
+
+<div class="sectionhead">
+
+<div>
+
+<div class="eyebrow">
+OUR COLLECTION
+</div>
+
+<h2>
+Shop our toys
+</h2>
+
+<p>
+Choose a toy and tell us how many you want.
+</p>
+
+</div>
+
+<button class="btn ghost"
+onclick="show('shop')">
+View all toys →
+</button>
+
+</div>
+
+<div class="grid">
+
+${
+products
+.slice(0,4)
+.map(card)
+.join('')
+||
+'<p style="color:var(--muted)">No toys added yet.</p>'
+}
+
+</div>
+
+</section>
+`;
+
+}
+
+/* =========================================================
+   PRODUCT CARD
+   ========================================================= */
 
 function card(p){
- const stock=totalStock(p);
- return `<article class="card"><div class="pic">${p.badge?`<span class="tag">${p.badge}</span>`:''}${pic(p.image_url,'🧸')}</div><div class="body"><div class="cat">${p.category}</div><div class="name">${p.name}</div><div class="desc">${(p.description||'').slice(0,90)}${(p.description||'').length>90?'…':''}</div><div class="price">${money(p.price)} ${p.was_price?`<span class="was">${money(p.was_price)}</span>`:''}</div><div class="stock">${stock>0?(stock<=5?`Only ${stock} left`:'In stock'):'Out of stock'}</div><button class="btn primary" onclick="openProduct(${p.id})">${stock>0?'View Toy':'View Details'}</button></div></article>`;
+
+const stock=totalStock(p);
+const imgs=imagesOf(p);
+const main=imgs[0]||'';
+
+return `
+
+<article class="card">
+
+<div class="pic">
+
+${p.badge?`<span class="tag">${p.badge}</span>`:''}
+
+${pic(main,'🧸')}
+
+</div>
+
+<div class="body">
+
+<div class="cat">
+${p.category}
+</div>
+
+<div class="name">
+${p.name}
+</div>
+
+<div class="desc">
+${(p.description||'').slice(0,90)}
+${(p.description||'').length>90?'…':''}
+</div>
+
+<div class="price">
+${money(p.price)}
+
+${p.was_price?
+`<span class="was">${money(p.was_price)}</span>`
+:''}
+
+</div>
+
+<div class="stock">
+${
+stock>0
+?(stock<=5?`Only ${stock} left`:'In stock')
+:'Out of stock'
+}
+</div>
+
+<button class="btn primary"
+onclick="openProduct(${p.id})">
+
+${stock>0?'View Toy':'View Details'}
+
+</button>
+
+</div>
+
+</article>
+`;
+
 }
 
-function openProduct(id){current=id;qty=1;currentVariant=null;show('product')}
+function openProduct(id){
+
+current=id;
+qty=1;
+currentVariant=null;
+currentImageIndex=0;
+
+show('product');
+
+}
+
+/* =========================================================
+   SHOP
+   ========================================================= */
 
 function renderShop(){
- let list=products.filter(p=>filter==='All'||p.category===filter).filter(p=>p.name.toLowerCase().includes(search.toLowerCase()));
- document.getElementById('app').innerHTML=`<section class="page wrap"><div class="sectionhead"><div><div class="eyebrow">TOY SHOP</div><h2>Find a toy for every kind of play.</h2><p>No checkout. Select your toys and order directly through WhatsApp.</p></div></div>
- <div class="toolbar"><input class="search" value="${search}" oninput="search=this.value;renderShop()" placeholder="Search toys...">${['All',...categories.map(c=>c.name)].map(c=>`<button class="chip ${filter===c?'active':''}" onclick="filter='${c}';renderShop()">${c}</button>`).join('')}</div>
- <div class="grid">${list.length?list.map(card).join(''):`<div class="empty" style="grid-column:1/-1"><h3>No toys found</h3><p>Try another search or category.</p></div>`}</div></section>`;
+
+let list=products
+.filter(p=>filter==='All'||p.category===filter)
+.filter(p=>p.name.toLowerCase().includes(search.toLowerCase()));
+
+document.getElementById('app').innerHTML=`
+
+<section class="page wrap">
+
+<div class="sectionhead">
+
+<div>
+
+<div class="eyebrow">
+TOY SHOP
+</div>
+
+<h2>
+Find a toy for every kind of play.
+</h2>
+
+<p>
+No checkout. Select your toys and order directly through WhatsApp.
+</p>
+
+</div>
+
+</div>
+
+<div class="toolbar">
+
+<input
+class="search"
+value="${search}"
+oninput="search=this.value;renderShop()"
+placeholder="Search toys..."
+>
+
+${
+['All',...categories.map(c=>c.name)]
+.map(c=>`
+<button
+class="chip ${filter===c?'active':''}"
+onclick="filter='${c}';renderShop()">
+${c}
+</button>
+`)
+.join('')
 }
+
+</div>
+
+<div class="grid">
+
+${
+list.length
+?list.map(card).join('')
+:`<div class="empty" style="grid-column:1/-1">
+<h3>No toys found</h3>
+<p>Try another search or category.</p>
+</div>`
+}
+
+</div>
+
+</section>
+`;
+
+}
+
+/* =========================================================
+   PRODUCT GALLERY
+   ========================================================= */
+
+function selectProductImage(index){
+
+currentImageIndex=index;
+
+const main=document.getElementById('productMainImage');
+
+if(!main)return;
+
+const p=product(current);
+
+const imgs=imagesOf(p);
+
+if(!imgs.length)return;
+
+main.src=imgs[index];
+
+document
+.querySelectorAll('.gallery-thumb')
+.forEach((el,i)=>{
+el.classList.toggle('active',i===index)
+});
+
+}
+
+function nextProductImage(){
+
+const p=product(current);
+const imgs=imagesOf(p);
+
+if(imgs.length<2)return;
+
+currentImageIndex=
+(currentImageIndex+1)%imgs.length;
+
+selectProductImage(currentImageIndex);
+
+}
+
+function prevProductImage(){
+
+const p=product(current);
+const imgs=imagesOf(p);
+
+if(imgs.length<2)return;
+
+currentImageIndex=
+(currentImageIndex-1+imgs.length)%imgs.length;
+
+selectProductImage(currentImageIndex);
+
+}
+
+/* =========================================================
+   PRODUCT PAGE
+   ========================================================= */
 
 function renderProduct(){
- const p=product(current);if(!p)return show('shop');
- const sizes=sizesOf(p);
- const size=currentVariant?currentVariant.size:sizes[0];
- const colours=coloursOf(p,size);
- const colour=currentVariant&&currentVariant.colour!==undefined?currentVariant.colour:colours[0];
- const v=findVariant(p,size,colour)||variantsOf(p)[0];
- currentVariant=v;
- const stock=v?v.stock_qty:0;
- const price=priceOf(p,v);
 
- document.getElementById('app').innerHTML=`<section class="page wrap"><button class="btn ghost" onclick="show('shop')">← Back to toys</button><div class="product" style="margin-top:25px">
- <div class="product-image">${pic(p.image_url,'🧸')}</div>
- <div><div class="eyebrow">${p.category}</div><h2>${p.name}</h2>
- <div class="price" style="font-size:28px">${money(price)} ${p.was_price?`<span class="was">${money(p.was_price)}</span>`:''}</div>
- <p class="lead">${p.description||''}</p>
- <div class="meta">${p.age?`<div><small>Age</small><strong>${p.age}</strong></div>`:''}<div><small>Availability</small><strong>${stock>0?(stock<=5?'Only '+stock+' left':'In stock'):'Out of stock'}</strong></div></div>
- <div class="optrow">
-  ${sizes.length&&sizes[0]!=='Standard'?`<div><label>Size</label><select onchange="pickSize(this.value)">${sizes.map(s=>`<option ${s===size?'selected':''}>${s}</option>`).join('')}</select></div>`:''}
-  ${colours.length?`<div><label>Colour</label><select onchange="pickColour(this.value)">${colours.map(c=>`<option ${c===colour?'selected':''}>${c}</option>`).join('')}</select></div>`:''}
- </div>
- <div class="qty"><strong>Quantity</strong><div class="qtybox"><button onclick="stepQty(-1)" ${qty<=1?'disabled':''}>−</button><span id="q">${qty}</span><button onclick="stepQty(1)" ${qty>=stock?'disabled':''}>+</button></div></div>
- <div class="actions">
-  <button class="btn primary" onclick="addToCart(product(${p.id}),currentVariant,qty);show('cart')" ${stock<1?'disabled':''}>Add to Selection</button>
-  <button class="btn whatsapp" onclick="buyNowSingle(product(${p.id}),currentVariant,qty)" ${stock<1?'disabled':''}>📱 Buy Now on WhatsApp</button>
- </div>
- <div class="notice" style="margin-top:18px">We will confirm availability, delivery and payment with you on WhatsApp. No online checkout is required.</div>
- </div></div></section>`;
+const p=product(current);
+
+if(!p)return show('shop');
+
+const imgs=imagesOf(p);
+
+const sizes=sizesOf(p);
+
+const size=
+currentVariant
+?currentVariant.size
+:sizes[0];
+
+const colours=coloursOf(p,size);
+
+const colour=
+currentVariant&&currentVariant.colour!==undefined
+?currentVariant.colour
+:colours[0];
+
+const v=
+findVariant(p,size,colour)
+||
+variantsOf(p)[0];
+
+currentVariant=v;
+
+const stock=v
+?Number(v.stock_qty||v.stockQty||0)
+:totalStock(p);
+
+const price=
+v&&v.price
+?Number(v.price)
+:Number(p.price||0);
+
+currentImageIndex=
+Math.min(currentImageIndex,Math.max(0,imgs.length-1));
+
+const activeImage=
+imgs[currentImageIndex]||'';
+
+document.getElementById('app').innerHTML=`
+
+<section class="page wrap">
+
+<button
+class="btn ghost"
+onclick="show('shop')">
+← Back to toys
+</button>
+
+<div class="product" style="margin-top:25px">
+
+<div class="product-gallery">
+
+<div class="gallery-main">
+
+<div class="product-image">
+
+${
+activeImage
+?`
+<img
+id="productMainImage"
+src="${activeImage}"
+alt="${p.name}">
+`
+:'🧸'
 }
-function pickSize(s){const p=product(current);const colours=coloursOf(p,s);currentVariant=findVariant(p,s,colours[0])||variantsOf(p)[0];qty=1;renderProduct()}
-function pickColour(c){const p=product(current);currentVariant=findVariant(p,currentVariant.size,c)||currentVariant;qty=1;renderProduct()}
-function stepQty(d){const v=currentVariant;qty=Math.max(1,Math.min((v?v.stock_qty:1)||1,qty+d));document.getElementById('q').textContent=qty;renderProduct()}
+
+</div>
+
+${
+imgs.length>1
+?`
+<button
+class="gallery-prev"
+onclick="prevProductImage()">
+‹
+</button>
+
+<button
+class="gallery-next"
+onclick="nextProductImage()">
+›
+</button>
+`
+:''
+}
+
+</div>
+
+${
+imgs.length>1
+?`
+<div class="gallery-thumbs">
+
+${
+imgs.map((img,i)=>`
+
+<button
+class="gallery-thumb ${i===currentImageIndex?'active':''}"
+onclick="selectProductImage(${i})">
+
+<img
+src="${img}"
+alt="${p.name} image ${i+1}">
+
+</button>
+
+`).join('')
+}
+
+</div>
+`
+:''
+}
+
+</div>
+
+<div>
+
+<div class="eyebrow">
+${p.category}
+</div>
+
+<h2>
+${p.name}
+</h2>
+
+<div class="price" style="font-size:28px">
+
+${money(price)}
+
+${
+p.was_price
+?`<span class="was">${money(p.was_price)}</span>`
+:''
+}
+
+</div>
+
+<p class="lead">
+${p.description||''}
+</p>
+
+<div class="meta">
+
+${
+p.age
+?`
+<div>
+<small>Age</small>
+<strong>${p.age}</strong>
+</div>
+`
+:''
+}
+
+<div>
+
+<small>Availability</small>
+
+<strong>
+${
+stock>0
+?(stock<=5?'Only '+stock+' left':'In stock')
+:'Out of stock'
+}
+</strong>
+
+</div>
+
+</div>
+
+<div class="optrow">
+
+${
+sizes.length&&sizes[0]!=='Standard'
+?`
+<div>
+<label>Size</label>
+
+<select onchange="pickSize(this.value)">
+
+${
+sizes.map(s=>`
+<option ${s===size?'selected':''}>
+${s}
+</option>
+`).join('')
+}
+
+</select>
+
+</div>
+`
+:''
+}
+
+${
+colours.length
+?`
+<div>
+<label>Colour</label>
+
+<select onchange="pickColour(this.value)">
+
+${
+colours.map(c=>`
+<option ${c===colour?'selected':''}>
+${c}
+</option>
+`).join('')
+}
+
+</select>
+
+</div>
+`
+:''
+}
+
+</div>
+
+<div class="qty">
+
+<strong>Quantity</strong>
+
+<div class="qtybox">
+
+<button
+onclick="stepQty(-1)"
+${qty<=1?'disabled':''}>
+−
+</button>
+
+<span id="q">
+${qty}
+</span>
+
+<button
+onclick="stepQty(1)"
+${qty>=stock?'disabled':''}>
++
+</button>
+
+</div>
+
+</div>
+
+<div class="actions">
+
+<button
+class="btn primary"
+onclick="addToCart(product(${p.id}),currentVariant,qty);show('cart')"
+${stock<1?'disabled':''}>
+Add to Selection
+</button>
+
+<button
+class="btn whatsapp"
+onclick="buyNowSingle(product(${p.id}),currentVariant,qty)"
+${stock<1?'disabled':''}>
+📱 Buy Now on WhatsApp
+</button>
+
+</div>
+
+<div class="notice" style="margin-top:18px">
+
+${
+imgs.length>1
+?`This toy has ${imgs.length} images. Use the arrows or thumbnails to view all images.<br><br>`
+:''
+}
+
+We will confirm availability, delivery and payment with you on WhatsApp. No online checkout is required.
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+`;
+
+}
+
+function pickSize(s){
+
+const p=product(current);
+
+const colours=coloursOf(p,s);
+
+currentVariant=
+findVariant(p,s,colours[0])
+||
+variantsOf(p)[0];
+
+qty=1;
+currentImageIndex=0;
+
+renderProduct();
+
+}
+
+function pickColour(c){
+
+const p=product(current);
+
+currentVariant=
+findVariant(
+p,
+currentVariant.size,
+c
+)
+||
+currentVariant;
+
+qty=1;
+
+renderProduct();
+
+}
+
+function stepQty(d){
+
+const v=currentVariant;
+
+const stock=
+v
+?Number(v.stock_qty||v.stockQty||0)
+:1;
+
+qty=Math.max(
+1,
+Math.min(stock,qty+d)
+);
+
+const q=document.getElementById('q');
+
+if(q)q.textContent=qty;
+
+renderProduct();
+
+}
+
+/* =========================================================
+   CART
+   ========================================================= */
 
 function renderCart(){
- const items=selected();
- document.getElementById('app').innerHTML=`<section class="page wrap"><div class="sectionhead"><div><div class="eyebrow">YOUR SELECTION</div><h2>${items.length?'Review your toys':'Your selection is empty'}</h2><p>${items.length?'Change quantities before sending the order to WhatsApp.':'Browse the toy collection and add what you like.'}</p></div></div>${items.length?`<div class="cartlayout"><div>${items.map(x=>`<div class="cartitem"><div class="thumb">${pic(x.image_url,'🧸')}</div><div><strong>${x.name}</strong><div class="cat">${[x.size,x.colour].filter(Boolean).join(', ')}</div><button class="remove" onclick="removeFromCart('${x.key}')">Remove</button></div><div class="qtybox"><button onclick="changeQty('${x.key}',-1)">−</button><span>${x.qty}</span><button onclick="changeQty('${x.key}',1)">+</button></div></div>`).join('')}</div><aside class="summary"><h3>Order summary</h3><div class="row"><span>Toys</span><span>${items.reduce((s,x)=>s+x.qty,0)} items</span></div><div class="row total"><span>Estimated total</span><span>${money(cartTotal())}</span></div><button class="btn whatsapp" style="width:100%;margin-top:15px" onclick="contactWhatsApp()">Send Order to WhatsApp</button><p style="font-size:12px;color:var(--muted);line-height:1.5">Final delivery charges and payment will be confirmed by the ${settings.store_name||'MANA BOMMALU'} team.</p></aside></div>`:`<div class="empty"><div style="font-size:55px">🧸</div><h3>No toys selected yet</h3><p>Choose a toy, set the quantity and send your order directly to WhatsApp.</p><button class="btn primary" onclick="show('shop')">Browse Toys</button></div>`}</section>`;
+
+const items=selected();
+
+document.getElementById('app').innerHTML=`
+
+<section class="page wrap">
+
+<div class="sectionhead">
+
+<div>
+
+<div class="eyebrow">
+YOUR SELECTION
+</div>
+
+<h2>
+${items.length?'Review your toys':'Your selection is empty'}
+</h2>
+
+<p>
+${
+items.length
+?'Change quantities before sending the order to WhatsApp.'
+:'Browse the toy collection and add what you like.'
+}
+</p>
+
+</div>
+
+</div>
+
+${
+items.length
+?`
+
+<div class="cartlayout">
+
+<div>
+
+${
+items.map(x=>`
+
+<div class="cartitem">
+
+<div class="thumb">
+${pic(x.image_url,'🧸')}
+</div>
+
+<div>
+
+<strong>${x.name}</strong>
+
+<div class="cat">
+${[x.size,x.colour].filter(Boolean).join(', ')}
+</div>
+
+<button
+class="remove"
+onclick="removeFromCart('${x.key}')">
+Remove
+</button>
+
+</div>
+
+<div class="qtybox">
+
+<button
+onclick="changeQty('${x.key}',-1)">
+−
+</button>
+
+<span>
+${x.qty}
+</span>
+
+<button
+onclick="changeQty('${x.key}',1)">
++
+</button>
+
+</div>
+
+</div>
+
+`).join('')}
+
+</div>
+
+<aside class="summary">
+
+<h3>
+Order summary
+</h3>
+
+<div class="row">
+
+<span>Toys</span>
+
+<span>
+${items.reduce((s,x)=>s+x.qty,0)} items
+</span>
+
+</div>
+
+<div class="row total">
+
+<span>Estimated total</span>
+
+<span>
+${money(cartTotal())}
+</span>
+
+</div>
+
+<button
+class="btn whatsapp"
+style="width:100%;margin-top:15px"
+onclick="contactWhatsApp()">
+
+Send Order to WhatsApp
+
+</button>
+
+<p
+style="font-size:12px;color:var(--muted);line-height:1.5">
+
+Final delivery charges and payment will be confirmed by the
+${settings.store_name||'MANA BOMMALU'} team.
+
+</p>
+
+</aside>
+
+</div>
+
+`
+:`
+
+<div class="empty">
+
+<div style="font-size:55px">
+🧸
+</div>
+
+<h3>
+No toys selected yet
+</h3>
+
+<p>
+Choose a toy, set the quantity and send your order directly to WhatsApp.
+</p>
+
+<button
+class="btn primary"
+onclick="show('shop')">
+Browse Toys
+</button>
+
+</div>
+
+`
 }
 
+</section>
+`;
+
+}
+
+/* =========================================================
+   ABOUT / CONTACT
+   ========================================================= */
+
 function renderAbout(page){
- document.getElementById('app').innerHTML=`<section class="page wrap"><div class="eyebrow">${page==='contact'?'CONTACT':'ABOUT US'}</div><h2>${page==='contact'?'Let’s talk about your order.':'Simple toys, thoughtful play.'}</h2><div class="aboutgrid" style="margin-top:30px"><div><p style="color:var(--muted);line-height:1.8">${settings.store_name||'MANA BOMMALU'} is focused on bringing lovely toys to families without making ordering complicated. Browse the collection, choose the quantity and speak to us directly on WhatsApp.</p><button class="btn whatsapp" onclick="contactWhatsApp()">Chat with us on WhatsApp</button></div><div><div class="info"><small>Store</small><strong>${settings.store_name||'MANA BOMMALU'}</strong></div><div class="info"><small>Contact</small><strong>WhatsApp ordering</strong></div><div class="info"><small>Ordering</small><strong>Browse → Select quantity → WhatsApp</strong></div></div></div></section>`;
+
+document.getElementById('app').innerHTML=`
+
+<section class="page wrap">
+
+<div class="eyebrow">
+${page==='contact'?'CONTACT':'ABOUT US'}
+</div>
+
+<h2>
+${
+page==='contact'
+?'Let’s talk about your order.'
+:'Simple toys, thoughtful play.'
+}
+</h2>
+
+<div class="aboutgrid" style="margin-top:30px">
+
+<div>
+
+<p
+style="color:var(--muted);line-height:1.8">
+
+${settings.store_name||'MANA BOMMALU'}
+is focused on bringing lovely toys to families without making ordering complicated.
+Browse the collection, choose the quantity and speak to us directly on WhatsApp.
+
+</p>
+
+<button
+class="btn whatsapp"
+onclick="contactWhatsApp()">
+Chat with us on WhatsApp
+</button>
+
+</div>
+
+<div>
+
+<div class="info">
+<small>Store</small>
+<strong>
+${settings.store_name||'MANA BOMMALU'}
+</strong>
+</div>
+
+<div class="info">
+<small>Contact</small>
+<strong>
+WhatsApp ordering
+</strong>
+</div>
+
+<div class="info">
+<small>Ordering</small>
+<strong>
+Browse → Select quantity → WhatsApp
+</strong>
+</div>
+
+</div>
+
+</div>
+
+</section>
+`;
+
 }
 
 boot();
+
 </script>
-<footer><div class="wrap"><strong class="brand" id="storeNameFooter">MANA BOMMALU</strong><p>Toys made to be loved.</p><small>© 2026 MANA BOMMALU. Catalogue and WhatsApp ordering.</small></div></footer>
+
+<footer>
+
+<div class="wrap">
+
+<strong class="brand">
+<span class="dot"></span>
+<span>MANA BOMMALU</span>
+</strong>
+
+<p>
+Toys made to be loved.
+</p>
+
+<small>
+© 2026 MANA BOMMALU. Catalogue and WhatsApp ordering.
+</small>
+
+</div>
+
+</footer>
+
 </body>
 </html>
