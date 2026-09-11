@@ -38,7 +38,7 @@ table{width:100%;border-collapse:collapse}th,td{padding:12px 10px;border-bottom:
 
 <div id="loginScreen" class="loginwrap">
  <div class="loginbox">
-  <h1>Admin Login</h1>
+  <h1>🧸 Admin Login</h1>
   <p>MANA BOMMALU store management</p>
   <label>Username</label><input id="lg_user" placeholder="admin">
   <label>Password</label><input id="lg_pass" type="password" placeholder="••••••••" onkeydown="if(event.key==='Enter')doLogin()">
@@ -49,7 +49,7 @@ table{width:100%;border-collapse:collapse}th,td{padding:12px 10px;border-bottom:
 </div>
 
 <div id="adminShell" class="shell" style="display:none">
-<aside class="side"><div class="logo"> MANA BOMMALU<small>Admin Panel</small></div>
+<aside class="side"><div class="logo">🧸 MANA BOMMALU<small>Admin Panel</small></div>
 <nav class="nav">
 <button onclick="go('dashboard')" class="active">Dashboard</button>
 <button onclick="go('products')">Products</button>
@@ -71,39 +71,6 @@ let TOKEN=localStorage.getItem('mb_admin_token')||'';
 let products=[],cats=[],orders=[],customers=[],settings={},varRows=[];
 
 function money(n){return '₹'+Number(n||0).toLocaleString('en-IN')}
-function formatDateTime(value){
-  if(!value) return '—';
-
-  const d = new Date(value.replace(' ', 'T') + 'Z');
-
-  if(isNaN(d.getTime())) return '—';
-
-  return d.toLocaleString('en-IN', {
-    timeZone: 'Asia/Kolkata',
-    day: '2-digit',
-    month: '2-digit',
-    year: 'numeric',
-    hour: '2-digit',
-    minute: '2-digit',
-    second: '2-digit',
-    hour12: true
-  });
-}
-
-function formatDate(value){
-  if(!value) return '—';
-
-  const d = new Date(value.replace(' ', 'T') + 'Z');
-
-  if(isNaN(d.getTime())) return '—';
-
-  return d.toLocaleDateString('en-IN', {
-    timeZone: 'Asia/Kolkata',
-    day: '2-digit',
-    month: '2-digit',
-    year: 'numeric'
-  });
-}
 function pic(url){return url?`<img src="${url}" alt="" onerror="this.parentElement.innerHTML='🧸'">`:'🧸'}
 
 async function api(path,opts={}){
@@ -123,16 +90,26 @@ async function doLogin(){
   const data=await r.json();
   if(!r.ok)throw new Error(data.error||'Login failed');
   TOKEN=data.token;localStorage.setItem('mb_admin_token',TOKEN);
-  enterAdmin();
+  await enterAdmin();
  }catch(e){document.getElementById('lg_err').textContent=e.message}
 }
 function logout(){TOKEN='';localStorage.removeItem('mb_admin_token');document.getElementById('adminShell').style.display='none';document.getElementById('loginScreen').style.display='grid'}
 
 async function enterAdmin(){
- try{await api('/auth/me')}catch(e){logout();return}
+ try{
+  await api('/auth/me');
+ }catch(e){
+  TOKEN='';
+  localStorage.removeItem('mb_admin_token');
+  document.getElementById('loginScreen').style.display='grid';
+  document.getElementById('adminShell').style.display='none';
+  document.getElementById('lg_err').textContent=e.message || 'Unable to verify the admin session.';
+  return false;
+ }
  document.getElementById('loginScreen').style.display='none';
  document.getElementById('adminShell').style.display='flex';
  go('dashboard');
+ return true;
 }
 
 async function refresh(){
@@ -154,7 +131,7 @@ async function dashboard(){
  document.getElementById('content').innerHTML=`<div class="stats"><div class="stat"><strong>${money(total)}</strong><small>Confirmed / recorded sales</small></div><div class="stat"><strong>${orders.length}</strong><small>WhatsApp orders</small></div><div class="stat"><strong>${pending}</strong><small>Orders needing attention</small></div><div class="stat"><strong>${products.length}</strong><small>Toys listed</small></div></div><div class="panel"><div class="panelhead"><h2>Recent WhatsApp orders</h2><button class="btn ghost" onclick="go('orders')">View all</button></div>${orders.slice(0,5).map(orderCard).join('')||'<p style="color:var(--muted)">No orders yet.</p>'}</div><div class="panel"><div class="panelhead"><h2>Business flow</h2></div><div class="notice">Customer browses the live store → selects size/colour & quantity → order is logged here automatically → customer's WhatsApp opens with the message ready → you confirm availability, delivery and payment.</div></div>`;
 }
 
-function orderCard(o){return `<div class="order"><div class="orderhead"><div><strong>${o.id}</strong> · ${o.customer_name||'—'}<div style="font-size:12px;color:var(--muted)">${o.phone||'no phone on file'} · ${formatDateTime(o.created_at)}</div></div><span class="pill ${o.status==='New'?'warn':''}">${o.status}</span></div><div class="orderitems">${o.items}<br><strong>${money(o.total)}</strong></div><div class="actions"><button class="btn ghost" onclick="orderModal('${o.id}')">Update</button><button class="btn wa" onclick="openWA('${o.phone}','${o.customer_name||''}')">WhatsApp</button></div></div>`}
+function orderCard(o){return `<div class="order"><div class="orderhead"><div><strong>${o.id}</strong> · ${o.customer_name||'—'}<div style="font-size:12px;color:var(--muted)">${o.phone||'no phone on file'} · ${new Date(o.created_at).toLocaleString('en-IN')}</div></div><span class="pill ${o.status==='New'?'warn':''}">${o.status}</span></div><div class="orderitems">${o.items}<br><strong>${money(o.total)}</strong></div><div class="actions"><button class="btn ghost" onclick="orderModal('${o.id}')">Update</button><button class="btn wa" onclick="openWA('${o.phone}','${o.customer_name||''}')">WhatsApp</button></div></div>`}
 
 // ---------------- PRODUCTS ----------------
 async function productsPage(){
@@ -193,32 +170,8 @@ function productModal(id){
   <div><label>Original / MRP price (optional)</label><input id="f_was" type="number" value="${p&&p.was_price?p.was_price:''}"></div>
   <div><label>Age group</label><input id="f_age" placeholder="e.g. 3+ yrs" value="${p?p.age||'':''}"></div>
   <div><label>Badge (optional)</label><input id="f_badge" placeholder="e.g. Bestseller" value="${p?p.badge||'':''}"></div>
-<div class="full">
-  <label>Product Image</label>
-
-  <input
-    id="f_image_file"
-    type="file"
-    accept="image/*"
-    onchange="handleImageSelect(event)"
-  >
-
-  <input
-    id="f_image"
-    type="hidden"
-    value="${p?p.image_url||'':''}"
-  >
-
-  <div id="imagePreview" style="margin-top:10px;">
-    ${p && p.image_url
-      ? `<img src="${p.image_url}" style="max-width:180px;max-height:180px;border-radius:10px;object-fit:cover;">`
-      : ''}
-  </div>
-
-  <small style="display:block;margin-top:6px;color:var(--muted)">
-    Choose an image from your computer.
-  </small>
-</div>  <div class="full"><label>Description</label><textarea id="f_desc">${p?p.description||'':''}</textarea></div>
+  <div class="full"><label>Image URL</label><input id="f_image" placeholder="https://..." value="${p?p.image_url||'':''}"></div>
+  <div class="full"><label>Description</label><textarea id="f_desc">${p?p.description||'':''}</textarea></div>
  </div>
  <div class="full" style="margin-top:18px">
   <label>Sizes / Colours / Price / Stock <span style="font-weight:400;color:var(--muted)">— customers pick one of these on the toy page. Leave "Price override" blank to use the base price.</span></label>
@@ -230,50 +183,6 @@ function productModal(id){
  </div>`;
  renderVarRows();
  openModal();
-}
-function handleImageSelect(event) {
-  const file = event.target.files[0];
-
-  if (!file) return;
-
-  // Check file type
-  if (!file.type.startsWith('image/')) {
-    alert('Please select an image file.');
-    event.target.value = '';
-    return;
-  }
-
-  // Check file size - 2 MB maximum
-  if (file.size > 2 * 1024 * 1024) {
-    alert('Please choose an image smaller than 2 MB.');
-    event.target.value = '';
-    return;
-  }
-
-  const reader = new FileReader();
-
-  reader.onload = function(e) {
-    const imageData = e.target.result;
-
-    // Store image as Base64 data
-    document.getElementById('f_image').value = imageData;
-
-    // Show preview
-    document.getElementById('imagePreview').innerHTML = `
-      <img
-        src="${imageData}"
-        style="
-          max-width:180px;
-          max-height:180px;
-          border-radius:10px;
-          object-fit:cover;
-          border:1px solid #ddd;
-        "
-      >
-    `;
-  };
-
-  reader.readAsDataURL(file);
 }
 async function saveProduct(id){
  const body={
@@ -338,19 +247,8 @@ function openWA(phone,name){const n=(phone||'').replace(/\D/g,'');if(!n)return a
 // ---------------- CUSTOMERS ----------------
 async function customersPage(){
  await refresh();
- document.getElementById('content').innerHTML=`<div class="panel"><div class="panelhead"><h2>Customers</h2><small style="color:var(--muted)">Built automatically from WhatsApp orders.</small></div><table><thead><tr><th>Name</th><th>WhatsApp</th><th>Orders</th><th>Last order</th><th>Action</th></tr></thead><tbody>${customers.map(c=>`<tr>
-<td><strong>${c.name||'—'}</strong></td>
-<td>${c.phone||'Not provided'}</td>
-<td>${c.orders}</td>
-<td>${formatDate(c.last)}</td>
-<td>
-  ${c.phone
-    ? `<button class="btn wa" onclick="openWA('${c.phone}','${c.name||''}')">WhatsApp</button>`
-    : `<span style="color:var(--muted)">No phone</span>`
-  }
-</td>
-</tr>`).join('')
-||'<tr><td colspan="5" style="color:var(--muted)">No customers yet.</td></tr>'}
+ document.getElementById('content').innerHTML=`<div class="panel"><div class="panelhead"><h2>Customers</h2><small style="color:var(--muted)">Built automatically from WhatsApp orders.</small></div><table><thead><tr><th>Name</th><th>WhatsApp</th><th>Orders</th><th>Last order</th><th>Action</th></tr></thead><tbody>${customers.map(c=>`<tr><td><strong>${c.name||'—'}</strong></td><td>${c.phone}</td><td>${c.orders}</td><td>${new Date(c.last).toLocaleDateString('en-IN')}</td><td><button class="btn wa" onclick="openWA('${c.phone}','${c.name||''}')">WhatsApp</button></td></tr>`).join('')||'<tr><td colspan="5" style="color:var(--muted)">No customers yet.</td></tr>'}</tbody></table></div>`;
+}
 
 // ---------------- REPORTS ----------------
 async function reportsPage(){
